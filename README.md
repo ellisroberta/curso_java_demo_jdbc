@@ -7,12 +7,14 @@ de erros e carregamento de configurações a partir de um arquivo de propriedade
 
 ## Estrutura do Projeto
 
-`src/
+```
+src/
 ├── application/
 │   └── Program.java     # Classe principal da aplicação
 └── db/
 ├── DB.java              # Classe responsável pela conexão com o banco de dados
-└── DbException.java     # Classe de exceção personalizada`
+└── DbException.java     # Classe de exceção personalizada
+```
 
 ## Pré-requisitos
 
@@ -31,10 +33,12 @@ Você pode criar o banco de dados usando o seguinte comando SQL:
 
 2. **Arquivo de Propriedades**: Crie um arquivo chamado db.properties na raiz do seu diretório do projeto com o seguinte conteúdo:
 
-`user=root
+```
+user=root
 password=123456
 dburl=jdbc:mysql://localhost:3306/coursejdbc
-useSSL=false`
+useSSL=false
+```
 
 **Obs.**: Substitua os valores de `user` e `password` pelas credenciais do seu banco de dados, se necessário.
 
@@ -64,6 +68,35 @@ useSSL=false`
 - **DB.java**: Classe que contém métodos para obter e fechar a conexão com o banco de dados.
 Ela carrega as propriedades de configuração a partir do arquivo `db.properties`.
 - **Program.java**: Classe principal que contém o método `main`, onde a conexão com o banco de dados é estabelecida e fechada.
+
+## Instruções de Erro
+
+Durante a execução do projeto, você pode encontrar alguns erros comuns. Abaixo estão algumas soluções para problemas frequentemente relatados:
+
+1. **Erro de conexão com o banco de dados**:
+   - **Mensagem de erro**: `Communications link failure`
+   - **Solução**: Verifique se o servidor MySQL está em execução. Certifique-se de que as credenciais (usuário e senha) 
+   e a URL do banco de dados no arquivo `db.properties` estão corretas.
+
+2. **Banco de dados não encontrado**:
+   - **Mensagem de erro**: `Unknown database 'coursejdbc'`
+   - **Solução**: Verifique se o banco de dados `coursejdbc` foi criado. Use o comando SQL fornecido na seção de configuração para criá-lo.
+
+3. **Problemas de dependência**:
+   - **Mensagem de erro**: `ClassNotFoundException: com.mysql.cj.jdbc.Driver`
+   - **Solução**: Certifique-se de que a dependência do MySQL Connector/J está corretamente adicionada ao seu arquivo 
+   `pom.xml` (se estiver usando Maven) e que o projeto foi compilado corretamente.
+
+4. **Erro de configuração SSL**:
+   - **Mensagem de erro**: `SSL connection error`
+   - **Solução**: Se você não deseja usar SSL, verifique se o parâmetro `useSSL` no arquivo `db.properties` está definido
+   como `false`. Se precisar usar SSL, certifique-se de que o MySQL está configurado para suportá-lo.
+
+5. **Outros erros**:
+   - **Solução**: Consulte a documentação do JDBC ou do MySQL para obter mais informações sobre a mensagem de erro específica
+   que você está enfrentando. Você também pode verificar os logs do MySQL para mais detalhes.
+
+Caso você enfrente um erro que não está listado aqui, sinta-se à vontade para buscar ajuda em fóruns online ou consultar a documentação oficial do JDBC e do MySQL.
 
 ## Considerações Finais
 Este exemplo fornece uma estrutura básica para conectar-se a um banco de dados MySQL usando JDBC em Java.
